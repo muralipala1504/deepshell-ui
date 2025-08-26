@@ -10,12 +10,12 @@ form.addEventListener('submit', async (e) => {
   appendMessage('User', command);
   input.value = '';
   try {
-    const response = await fetch('http://localhost:8001/run-agent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: command }),
-    });
-    if (!response.ok) {
+  const response = await fetch('/run-agent', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ prompt: command }),
+});
+	if (!response.ok) {
       appendMessage('Error', `Server error: ${response.statusText}`);
       return;
     }
