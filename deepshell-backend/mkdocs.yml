@@ -1,0 +1,13 @@
+site_name: DeepShell Documentation
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
