@@ -4,10 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Deepshell Chat UI</title>
-  <!-- Updated CSS path -->
   <link rel="stylesheet" href="/static/services.css" />
+
+  <!-- Prism CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+
   <style>
-    /* Minimal inline styles in case services.css is missing */
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f5;
@@ -60,6 +63,38 @@
     button:hover {
       background: #0056b3;
     }
+
+    /* Prism copy button styling - always visible */
+    .prism-toolbar {
+      background: #007bff !important;
+      border-radius: 4px;
+      padding: 4px 8px;
+      top: 8px !important;
+      right: 8px !important;
+      opacity: 1 !important;
+      transition: none !important;
+      z-index: 10;
+    }
+
+    .prism-toolbar:hover {
+      opacity: 1 !important;
+    }
+
+    .prism-toolbar > button {
+      color: white !important;
+      font-weight: bold;
+      font-size: 0.9rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+
+    .prism-toolbar > button:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -71,7 +106,12 @@
       <button type="submit">Send</button>
     </form>
   </div>
-  <!-- Updated JS path -->
+
   <script src="/static/app.js"></script>
+
+  <!-- Prism JS -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 </body>
 </html>
