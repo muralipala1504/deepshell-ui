@@ -1,23 +1,19 @@
+# Use official Python slim image
 FROM python:3.9-slim
 
+# Set working directory
 WORKDIR /app
 
-# Copy only necessary files first for caching
-COPY setup.py requirements.txt pyproject.toml README.md /app/
+# Copy backend source code and config files
+COPY . /app
 
-# Copy source code before installing
-COPY deepshell /app/deepshell
-COPY docs /app/docs
+# Install bash and Python dependencies, then install your package
+RUN apt-get update && apt-get install -y bash \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir .
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Expose backend port (adjust if needed)
+EXPOSE 8000
 
-RUN pip install --upgrade pip
-RUN pip install .
-
-RUN useradd -m deepshelluser
-USER deepshelluser
-
-# Default command if no entrypoint override
-CMD ["--help"]
+# Default command: start bash shell
+CMD ["/bin/bash"]
