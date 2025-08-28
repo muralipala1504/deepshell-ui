@@ -17,7 +17,7 @@ DeepShell UI provides a clean, interactive web interface to send commands and re
 - Intuitive web interface with prompt input and response display
 - Syntax-highlighted shell script output with copy-to-clipboard
 - Connects seamlessly to the DeepShell backend API
-- Easy to run locally using Docker
+- Easy to run locally with minimal setup
 
 ---
 
@@ -25,58 +25,98 @@ DeepShell UI provides a clean, interactive web interface to send commands and re
 
 ### Prerequisites
 
-- Docker and Docker Compose installed on your machine
+- Python 3.9 or higher installed
+- Git installed
 - OpenAI API key (required for backend AI calls)
 
-### Running DeepShell UI with Docker Compose
+---
 
-1. Clone this repository:
+### Installation Steps
+
+1. **Clone this repository:**
 
 ```bash
 git clone https://github.com/muralipala1504/deepshell-ui.git
 cd deepshell-ui
 
 ```
-Set your OpenAI API key as an environment variable:
+
+Install Python dependencies:
+
+```bash
+
+pip install -r deepshell-backend/requirements.txt
 
 ```
+
+Install the local DeepShell package:
+
+```bash
+
+pip install -e deepshell-backend/
+
+```
+
+Set your OpenAI API key as an environment variable:
+
+	On Linux/macOS:
+
+```bash
+
 export OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
 
-Build and start the containers:
+	On Windows PowerShell:
+
+```pshell
+
+$env:OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
 
-docker compose build
-docker compose up -d
+Running DeepShell UI
+
+Start the backend and UI server with the launcher script:
+
+```bash
+
+python run_deepshell.py
 
 ```
 
-Open your browser and navigate to:
-
-http://localhost:8001
-
-```
-
-Start interacting with DeepShell via the UI!
+You should see a message indicating the backend has started.
 
 
-	About the Backend
+Accessing the UI
 
-	The DeepShell backend powers the AI shell assistant. It is included as a 	subfolder in this repo.
+Open your web browser and navigate to:
 
-	For detailed backend documentation, please see the archive/backend-docs/ 	folder or visit the DeepShell backend repository.
+http://localhost:8001  
 
+You can now interact with DeepShell UI.
+
+Stopping the Server
+
+To stop the backend server, go to the terminal where run_deepshell.py is running and press:
+
+Ctrl + C
+
+
+About the Backend
+
+The DeepShell backend powers the AI shell assistant. It is included as a subfolder in this repo.
+
+For detailed backend documentation, please see the archive/backend-docs/ folder or visit the DeepShell backend repository.
 
 Contributing
 
 Contributions are welcome! Please open issues or pull requests for improvements.
 
-
 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
+---
 
 ```
