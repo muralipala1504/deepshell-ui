@@ -35,7 +35,7 @@ class AgentRequest(BaseModel):
 async def run_agent(request: AgentRequest):
     try:
         result = subprocess.run(
-            ["deepshell", request.prompt],
+            ["python3", "-m", "deepshell", request.prompt],
             capture_output=True,
             text=True,
             check=True,
