@@ -88,6 +88,32 @@ python run_deepshell.py
 You should see a message indicating the backend has started.
 
 
+
+Running the DeepShell Backend in Background
+
+To start the backend server in the background and log output to a file, run:
+
+```bash
+
+python run_deepshell.py > deepshell.log 2>&1 &
+
+```
+
+This will start the backend as a background process and save logs to deepshell.log.
+
+
+Firewall Configuration
+
+If you are running on a Linux system with a firewall enabled, you need to open port 8001 to allow incoming connections:
+
+
+```bash
+
+sudo firewall-cmd --add-port=8001/tcp --permanent
+sudo firewall-cmd --reload
+
+```
+
 Accessing the UI
 
 Open your web browser and navigate to:
