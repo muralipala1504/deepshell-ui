@@ -77,15 +77,6 @@ $env:OPENAI_API_KEY="your_openai_api_key_here"
 
 Running DeepShell UI
 
-Start the backend and UI server with the launcher script:
-
-```bash
-
-python run_deepshell.py
-
-```
-
-You should see a message indicating the backend has started.
 
 
 
@@ -118,7 +109,8 @@ Accessing the UI
 
 Open your web browser and navigate to:
 
-http://localhost:8001  
+http://localhost:8001     (or)
+http://YOUR_IP_ADDRESS:8001  
 
 You can now interact with DeepShell UI.
 
