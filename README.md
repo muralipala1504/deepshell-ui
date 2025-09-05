@@ -133,6 +133,22 @@ This project is licensed under the MIT License.
 See the LICENSE file for details.
 
 
+---
+
+## 🛣️ Roadmap
+
+Here are some planned improvements to **Deepshell UI**:
+
+- [ ] 🌙 Dark mode theme for the UI  
+- [ ] 💾 Persistent chat history (store + reload previous conversations)  
+- [ ] 📂 Export responses to file (save scripts directly)  
+- [ ] ⚡ Support for multiple LLM providers (OpenAI, Anthropic, Local LLMs)  
+- [ ] 🔄 Clear/Reset chat session button  
+- [ ] 🛠️ More sysadmin/devops‑friendly features (cloud CLI, ansible, terraform hints)  
+
+---
+
+✅ Contributions are welcome! Feel free to open PRs/issues for features, fixes, and ideas.
 ____________________________________________________________________
 
 ---
