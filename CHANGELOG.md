@@ -3,6 +3,18 @@
 All notable changes to **Deepshell UI** will be documented here.
 
 ---
+## [Unreleased] - v1.1.0 (Work in Progress)
+
+### Planned
+- 🌙 Dark mode theme for the UI  
+- 💾 Persistent chat history (save & reload conversations)  
+- 📂 Export responses to file (download scripts directly)  
+- ⚡ Multiple backend LLM provider support (OpenAI, Anthropic, Local LLMs)  
+- 🔄 Clear/Reset chat session button  
+- 🛠️ Enhanced sysadmin/devops helpers (cloud CLI, ansible, terraform hints)
+
+--- 
+
 
 ## [v1.0.0] - 2025-09-05
 ### Added
