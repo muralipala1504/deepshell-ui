@@ -1,39 +1,53 @@
 
-```
-# DeepShell UI
 
-Welcome to the DeepShell UI project — a user-friendly web interface for interacting with the DeepShell backend AI shell assistant.
+# 💻 Deepshell UI
 
----
-
-## What is DeepShell UI?
-
-DeepShell UI provides a clean, interactive web interface to send commands and receive AI-generated shell scripts and responses powered by the DeepShell backend.
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-async-green.svg)
+![License](https://img.shields.io/badge/license-MIT-purple.svg)  
+_A lightweight web UI for the **Deepshell** AI Shell Assistant._
 
 ---
 
-## Features
+## 🚀 What is Deepshell UI?
 
-- Intuitive web interface with prompt input and response display
-- Syntax-highlighted shell script output with copy-to-clipboard
-- Connects seamlessly to the DeepShell backend API
-- Easy to run locally with minimal setup
+Deepshell UI provides a **clean and interactive web interface** for working with the **Deepshell backend** AI-powered shell assistant.  
+It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC Specialists** who need a fast, lightweight way to generate and test commands using LLMs.
 
 ---
 
-## Getting Started
+## ✨ Features
+
+- Intuitive **chat-style interface**
+- Syntax-highlighted shell script output with **Copy-to-Clipboard**
+- Compact & responsive layout with scrollable responses
+- Seamless connection to the **Deepshell backend API**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: HTML, CSS, Vanilla JS, Prism.js (syntax highlighting & copy-to-clipboard)  
+- **Backend**: FastAPI, Uvicorn, Typer, OpenAI (via LiteLLM), psutil, Rich  
+- **Other**: YAML for config, Python 3.9+
+
+---
+
+## 🖼️ Preview
+
+![Deepshell UI Screenshot](docs/screenshot.png)  
+*(Replace with your actual screenshot — e.g., the one you uploaded showing LVM script output)*
+
+---
+
+## ⚡ Getting Started
 
 ### Prerequisites
+- Python **3.9+**
+- Git  
+- OpenAI API Key (required for backend AI calls)
 
-- Python 3.9 or higher installed
-- Git installed
-- OpenAI API key (required for backend AI calls)
-
----
-
-### Installation Steps
-
-1. **Clone this repository:**
+### Installation
 
 ```bash
 git clone https://github.com/muralipala1504/deepshell-ui.git
@@ -41,25 +55,18 @@ cd deepshell-ui
 
 ```
 
-Install Python dependencies:
+Install dependencies:
 
 ```bash
 
 pip install -r deepshell-backend/requirements.txt
-
-```
-
-Install the local DeepShell package:
-
-```bash
-
 pip install -e deepshell-backend/
 
 ```
 
-Set your OpenAI API key as an environment variable:
+Set your OpenAI API key:
 
-	On Linux/macOS:
+Linux/macOS
 
 ```bash
 
@@ -67,7 +74,7 @@ export OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
 
-	On Windows PowerShell:
+Windows PowerShell
 
 ```pshell
 
@@ -75,14 +82,7 @@ $env:OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
 
-Running DeepShell UI
-
-
-
-
-Running the DeepShell Backend in Background
-
-To start the backend server in the background and log output to a file, run:
+Run the backend
 
 ```bash
 
@@ -90,12 +90,18 @@ python run_deepshell.py > deepshell.log 2>&1 &
 
 ```
 
-This will start the backend as a background process and save logs to deepshell.log.
+Now open in browser:
+
+```bash
+
+http://localhost:8001
+
+```
+
+👉 If remote, replace localhost with your server IP
 
 
-Firewall Configuration
-
-If you are running on a Linux system with a firewall enabled, you need to open port 8001 to allow incoming connections:
+⚡ Firewall Config (Linux Only)
 
 
 ```bash
@@ -105,36 +111,29 @@ sudo firewall-cmd --reload
 
 ```
 
-Accessing the UI
+🛑 Stopping the Server
 
-Open your web browser and navigate to:
-
-http://localhost:8001     (or)
-http://YOUR_IP_ADDRESS:8001  
-
-You can now interact with DeepShell UI.
-
-Stopping the Server
-
-To stop the backend server, go to the terminal where run_deepshell.py is running and press:
+In the terminal where run_deepshell.py is running, press:
 
 Ctrl + C
 
+🤝 Contributing
 
-About the Backend
+Contributions are always welcome!
 
-The DeepShell backend powers the AI shell assistant. It is included as a subfolder in this repo.
+    Open issues
+    Submit PRs
 
-For detailed backend documentation, please see the archive/backend-docs/ folder or visit the DeepShell backend repository.
+Help shape the future of Deepshell 🚀
 
-Contributing
 
-Contributions are welcome! Please open issues or pull requests for improvements.
+📜 License
 
-License
+This project is licensed under the MIT License.
+See the LICENSE file for details.
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+____________________________________________________________________
 
 ---
 
-```
