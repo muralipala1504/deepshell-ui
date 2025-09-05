@@ -1,58 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('chat-form');
-  const input = document.getElementById('chat-input');
-  const output = document.getElementById('chat-output');
+document.getElementById("chat-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const input = document.getElementById("chat-input");
+  const output = document.getElementById("chat-output");
+  const userMessage = input.value.trim();
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const command = input.value.trim();
-    if (!command) return;
+  if (!userMessage) return;
 
-    appendMessage('User', command);
-    input.value = '';
-    try {
-      const response = await fetch('/run-agent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: command }),
-      });
-      if (!response.ok) {
-        appendMessage('Error', `Server error: ${response.statusText}`);
-        return;
-      }
-      const data = await response.json();
-      appendMessage('Deepshell', data.output || 'No response');
-      Prism.highlightAll(); // Highlight newly added code blocks
-    } catch (err) {
-      appendMessage('Error', `Network error: ${err.message}`);
-    }
-  });
+  // Show user message
+  const userDiv = document.createElement("div");
+  userDiv.className = "message";
+  userDiv.innerHTML = `<strong>User:</strong><br>${userMessage}`;
+  output.appendChild(userDiv);
 
-  function appendMessage(sender, message) {
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('message');
+  // Clear input
+  input.value = "";
 
-    // Detect code block markdown ```lang ... ```
-    const codeBlockMatch = message.match(/```(\w+)?\n([\s\S]*?)```/);
-    if (codeBlockMatch) {
-      const lang = codeBlockMatch[1] || 'bash';
-      const code = codeBlockMatch[2];
-      msgDiv.innerHTML = `<strong>${sender}:</strong><pre><code class="language-${lang}">${escapeHtml(code)}</code></pre>`;
+  // Fetch response from backend
+  try {
+    const resp = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage })
+    });
+
+    const data = await resp.json();
+
+    const botDiv = document.createElement("div");
+    botDiv.className = "message";
+
+    if (data.response) {
+      // Wrap output into Prism-compatible code block
+      botDiv.innerHTML = `<strong>Deepshell:</strong><br>
+        <pre><code class="language-bash">${data.response}</code></pre>`;
     } else {
-      msgDiv.innerHTML = `<strong>${sender}:</strong> <pre>${escapeHtml(message)}</pre>`;
+      botDiv.innerHTML = `<strong>Error:</strong><br>Server error: ${data.error || "Unknown error"}`;
     }
 
-    output.appendChild(msgDiv);
+    output.appendChild(botDiv);
     output.scrollTop = output.scrollHeight;
-  }
 
-  function escapeHtml(text) {
-    return text.replace(/[&<>"']/g, (m) => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
-    })[m]);
+    // Highlight with Prism and attach Copy buttons
+    Prism.highlightAll();
+  } catch (err) {
+    const botDiv = document.createElement("div");
+    botDiv.className = "message";
+    botDiv.innerHTML = `<strong>Error:</strong><br>Could not connect to server`;
+    output.appendChild(botDiv);
   }
 });
