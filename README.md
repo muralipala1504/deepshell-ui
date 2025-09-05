@@ -36,7 +36,7 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 ## 🖼️ Preview
 
 ![Deepshell UI Screenshot](docs/screenshot.png)  
-*(Replace with your actual screenshot — e.g., the one you uploaded showing LVM script output)*
+*Example: AI‑generated LVM shell script created instantly via Deepshell Chat UI*
 
 ---
 
