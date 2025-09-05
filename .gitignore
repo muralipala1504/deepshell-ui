@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables / keys
+.env
+
+# macOS
+.DS_Store
+
+# Node / frontend deps (in case you add npm later)
+node_modules/
+
+# VSCode / local IDE
+.vscode/
