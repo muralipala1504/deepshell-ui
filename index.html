@@ -9,97 +9,11 @@
   <!-- Prism CSS -->
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-    }
-    #chat-output {
-      height: 400px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: #fafafa;
-      white-space: pre-wrap;
-    }
-    .message {
-      margin-bottom: 10px;
-    }
-    form {
-      display: flex;
-    }
-    #chat-input {
-      flex: 1;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
-      outline: none;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      border-radius: 0 4px 4px 0;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-
-    /* Prism copy button styling - always visible */
-    .prism-toolbar {
-      background: #007bff !important;
-      border-radius: 4px;
-      padding: 4px 8px;
-      top: 8px !important;
-      right: 8px !important;
-      opacity: 1 !important;
-      transition: none !important;
-      z-index: 10;
-    }
-
-    .prism-toolbar:hover {
-      opacity: 1 !important;
-    }
-
-    .prism-toolbar > button {
-      color: white !important;
-      font-weight: bold;
-      font-size: 0.9rem;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      padding: 0;
-      margin: 0;
-    }
-
-    .prism-toolbar > button:focus {
-      outline: 2px solid #fff;
-      outline-offset: 2px;
-    }
-  </style>
 </head>
 <body>
+  <div class="navbar">💻 Deepshell Chat UI</div>
+
   <div class="container">
-    <h1>Deepshell Chat UI</h1>
     <div id="chat-output"></div>
     <form id="chat-form">
       <input type="text" id="chat-input" placeholder="Enter command..." autocomplete="off" required />
