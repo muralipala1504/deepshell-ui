@@ -4,7 +4,9 @@
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-async-green.svg)
-![License](https://img.shields.io/badge/license-MIT-purple.svg)  
+![License](https://img.shields.io/badge/license-MIT-purple.svg)
+[![Release](https://img.shields.io/github/v/release/muralipala1504/deepshell-ui)](https://github.com/muralipala1504/deepshell-ui/releases)
+
 _A lightweight web UI for the **Deepshell** AI Shell Assistant._
 
 ---
@@ -21,14 +23,14 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 - Intuitive **chat-style interface**
 - Syntax-highlighted shell script output with **Copy-to-Clipboard**
 - Compact & responsive layout with scrollable responses
-- Seamless connection to the **Deepshell backend API**
+- Seamless integration with the **Deepshell backend API**
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, Vanilla JS, Prism.js (syntax highlighting & copy-to-clipboard)  
-- **Backend**: FastAPI, Uvicorn, Typer, OpenAI (via LiteLLM), psutil, Rich  
+- **Frontend**: HTML, CSS, Vanilla JS, Prism.js
+- **Backend**: FastAPI, Uvicorn, Typer, OpenAI (via LiteLLM), psutil, Rich
 - **Other**: YAML for config, Python 3.9+
 
 ---
@@ -36,7 +38,7 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 ## 🖼️ Preview
 
 ![Deepshell UI Screenshot](docs/screenshot.png)  
-*Example: AI‑generated LVM shell script created instantly via Deepshell Chat UI*
+*Example: AI‑generated LVM shell script created via Deepshell Chat UI*
 
 ---
 
@@ -44,7 +46,7 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 
 ### Prerequisites
 - Python **3.9+**
-- Git  
+- Git
 - OpenAI API Key (required for backend AI calls)
 
 ### Installation
@@ -52,7 +54,6 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 ```bash
 git clone https://github.com/muralipala1504/deepshell-ui.git
 cd deepshell-ui
-
 ```
 
 Install dependencies:
@@ -82,7 +83,7 @@ $env:OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
 
-Run the backend
+Run the backend:
 
 ```bash
 
@@ -93,16 +94,13 @@ python run_deepshell.py > deepshell.log 2>&1 &
 Now open in browser:
 
 ```bash
-
 http://localhost:8001
 
 ```
 
-👉 If remote, replace localhost with your server IP
+👉 If remote, replace localhost with your server IP.
 
-
-⚡ Firewall Config (Linux Only)
-
+⚡ Firewall Config (Linux only)
 
 ```bash
 
@@ -117,6 +115,7 @@ In the terminal where run_deepshell.py is running, press:
 
 Ctrl + C
 
+
 🤝 Contributing
 
 Contributions are always welcome!
@@ -127,29 +126,32 @@ Contributions are always welcome!
 Help shape the future of Deepshell 🚀
 
 
+
+## 🤖 AI Assistance
+
+This project was developed with assistance from AI language models (e.g., Gemini 2.5 Flash) for tasks such as code generation, debugging, documentation drafting, and architectural guidance.  
+All outputs have been reviewed, tested, and validated by the maintainer.
+
+
+
 📜 License
 
 This project is licensed under the MIT License.
 See the LICENSE file for details.
 
+🛣️ Roadmap
+
+Here are some planned improvements to Deepshell UI:
+
+    🌙 Dark mode theme
+    💾 Persistent chat history (store + reload)
+    📂 Export responses to file (save scripts directly)
+    ⚡ Support for multiple LLM providers (OpenAI, Anthropic, Local LLMs)
+    🔄 Clear/Reset chat session button
+    🛠️ More sysadmin/devops‑friendly helpers (cloud CLI, ansible, terraform)
+
+⭐ Star this repo if you find it useful!
 
 ---
 
-## 🛣️ Roadmap
-
-Here are some planned improvements to **Deepshell UI**:
-
-- [ ] 🌙 Dark mode theme for the UI  
-- [ ] 💾 Persistent chat history (store + reload previous conversations)  
-- [ ] 📂 Export responses to file (save scripts directly)  
-- [ ] ⚡ Support for multiple LLM providers (OpenAI, Anthropic, Local LLMs)  
-- [ ] 🔄 Clear/Reset chat session button  
-- [ ] 🛠️ More sysadmin/devops‑friendly features (cloud CLI, ansible, terraform hints)  
-
----
-
-✅ Contributions are welcome! Feel free to open PRs/issues for features, fixes, and ideas.
-____________________________________________________________________
-
----
 
