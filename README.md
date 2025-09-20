@@ -82,6 +82,14 @@ Windows PowerShell
 $env:OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
+⚡ Firewall Config (Linux only)
+
+```bash
+
+sudo firewall-cmd --add-port=8001/tcp --permanent
+sudo firewall-cmd --reload
+
+```
 
 Run the backend:
 
@@ -100,14 +108,6 @@ http://localhost:8001
 
 👉 If remote, replace localhost with your server IP.
 
-⚡ Firewall Config (Linux only)
-
-```bash
-
-sudo firewall-cmd --add-port=8001/tcp --permanent
-sudo firewall-cmd --reload
-
-```
 
 🛑 Stopping the Server
 
