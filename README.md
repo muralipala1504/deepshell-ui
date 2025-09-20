@@ -129,7 +129,7 @@ Help shape the future of Deepshell 🚀
 
 ## 🤖 AI Assistance
 
-This project was developed with assistance from AI language models (e.g., Gemini 2.5 Flash) for tasks such as code generation, debugging, documentation drafting, and architectural guidance.  
+This project was developed with assistance from AI language models (e.g.,OpenAI GPT,Gemini 2.5 Flash) for tasks such as code generation, debugging, documentation drafting, and architectural guidance.  
 All outputs have been reviewed, tested, and validated by the maintainer.
 
 
