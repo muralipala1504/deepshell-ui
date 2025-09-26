@@ -33,45 +33,61 @@ class AgentRequest(BaseModel):
 
 # ✅ Primary allowed keywords (broad DevOps/infra domain)
 ALLOWED_KEYWORDS = [
-    "linux", "bash", "shell", "command",
-    "devops", "docker", "kubernetes", "k8s",
-    "cloud", "aws", "azure", "gcp",
-    "ansible", "terraform", "iac",
-    "infrastructure", "sysadmin",
-    "ci", "cd", "pipeline",
+    "linux", "bash", "shell", "command", "script", "terminal", "cli",
+    "devops", "docker", "kubernetes", "k8s", "container", "pod",
+    "cloud", "aws", "azure", "gcp", "ec2", "s3", "lambda",
+    "ansible", "terraform", "iac", "playbook", "manifest",
+    "infrastructure", "sysadmin", "server", "vm", "instance",
+    "ci", "cd", "pipeline", "build", "deploy", "deployment",
     "jenkins", "gitlab", "github actions", "circleci", "travis",
-    "helm", "istio", "rancher", "openshift",
-    "vagrant", "packer", "consul", "vault",
-    "nginx", "apache", "haproxy", "firewall", "iptables",
-    "ssl", "tls", "mysql", "postgresql", "mongodb", "redis",
-    "git", "svn"
+    "helm", "istio", "rancher", "openshift", "kubectl",
+    "vagrant", "packer", "consul", "vault", "nomad",
+    "nginx", "apache", "haproxy", "firewall", "iptables", "ufw",
+    "ssl", "tls", "certificate", "https", "security",
+    "mysql", "postgresql", "mongodb", "redis", "database", "db",
+    "git", "svn", "version control", "repository", "commit",
+    "monitoring", "logging", "prometheus", "grafana", "elk",
+    "network", "dns", "load balancer", "proxy", "vpn",
+    "backup", "restore", "snapshot", "volume", "storage",
+    "systemd", "service", "daemon", "cron", "systemctl",
+    "package", "yum", "apt", "rpm", "dpkg", "install",
+    "lvm", "filesystem", "mount", "disk", "partition"
 ]
 
 # ✅ Chef/Puppet require context keywords
-CHEF_TERMS = ["chef recipe", "chef cookbook", "chef resource", "chef file"]
-PUPPET_TERMS = ["puppet manifest", "puppet module", "puppet class"]
+CHEF_TERMS = ["chef recipe", "chef cookbook", "chef resource", "chef file", "chef node"]
+PUPPET_TERMS = ["puppet manifest", "puppet module", "puppet class", "puppet agent"]
 
 # ✅ Excluded obvious non-tech words (to avoid false positives)
 EXCLUDED_CONTEXT = [
-    "food", "cooking", "kitchen", "biryani", "chicken", "mutton", "pasta",
-    "oil pipeline", "business", "finance", "company fraud", "movie", "song"
+    "food", "cooking", "kitchen", "biryani", "chicken", "mutton", "pasta", "recipe",
+    "oil pipeline", "business", "finance", "company fraud", "movie", "song", "music",
+    "love", "poem", "poetry", "story", "novel", "romance", "dating",
+    "game", "sports", "football", "cricket", "entertainment",
+    "health", "medicine", "doctor", "hospital", "treatment",
+    "travel", "vacation", "holiday", "tourism", "hotel"
 ]
 
 def is_allowed_query(query: str) -> bool:
+    """
+    Strict domain filtering: ONLY allow DevOps/Infra/Cloud/IaC queries.
+    Default deny everything else.
+    """
     query_lower = query.lower()
 
-    # Excluded words take priority
+    # 🚫 First block obvious nonsense
     if any(bad in query_lower for bad in EXCLUDED_CONTEXT):
         return False
 
-    # Chef/Puppet context check
+    # ✅ Allow Chef/Puppet in infra context
     if any(term in query_lower for term in CHEF_TERMS + PUPPET_TERMS):
         return True
 
-    # General DevOps/infra keywords check
+    # ✅ Allow if contains DevOps/infra keywords
     if any(kw in query_lower for kw in ALLOWED_KEYWORDS):
         return True
 
+    # 🚫 DEFAULT DENY: If no infra keywords found, reject
     return False
 
 def clean_output(raw: str) -> str:
@@ -96,7 +112,7 @@ def clean_output(raw: str) -> str:
 
 @app.post("/run-agent")
 async def run_agent(request: AgentRequest):
-    # ✅ Reject non-domain queries
+    # ✅ STRICT: Reject non-domain queries
     if not is_allowed_query(request.prompt):
         return {"output": "⚠️ Deepshell is specialized for Linux, Infra, DevOps, Cloud, and IaC tasks only. General Q&A is not supported here."}
 
