@@ -58,61 +58,63 @@ ALLOWED_KEYWORDS = [
 CHEF_TERMS = ["chef recipe", "chef cookbook", "chef resource", "chef file", "chef node"]
 PUPPET_TERMS = ["puppet manifest", "puppet module", "puppet class", "puppet agent"]
 
-# ✅ Excluded obvious non-tech words (to avoid false positives)
+# ✅ Excluded obvious non-tech words / traps
 EXCLUDED_CONTEXT = [
     "food", "cooking", "kitchen", "biryani", "chicken", "mutton", "pasta", "recipe",
     "oil pipeline", "business", "finance", "company fraud", "movie", "song", "music",
-    "love", "poem", "poetry", "story", "novel", "romance", "dating",
-    "game", "sports", "football", "cricket", "entertainment",
+    "love", "poem", "poetry", "story", "novel", "romance", "dating", "fluffy", "favorite",
+    "tree", "coffee", "startup", "pitch", "bitcoin", "crypto", "trading", "stock",
+    "game", "sports", "football", "cricket", "entertainment", "joke", "meme", "funny",
     "health", "medicine", "doctor", "hospital", "treatment",
     "travel", "vacation", "holiday", "tourism", "hotel"
 ]
 
-def is_allowed_query(query: str) -> bool:
-    """
-    Strict domain filtering: ONLY allow DevOps/Infra/Cloud/IaC queries.
-    Default deny everything else.
-    """
-    query_lower = query.lower()
+# 🚫 Block trivia style Q&A unless tied to actionable context
+QUESTION_WORDS = ["who", "what", "when", "where", "why", "how many"]
 
-    # 🚫 First block obvious nonsense
-    if any(bad in query_lower for bad in EXCLUDED_CONTEXT):
+def is_allowed_query(query: str) -> bool:
+    q = query.lower().strip()
+
+    # Block obvious nonsense
+    if any(bad in q for bad in EXCLUDED_CONTEXT):
         return False
 
-    # ✅ Allow Chef/Puppet in infra context
-    if any(term in query_lower for term in CHEF_TERMS + PUPPET_TERMS):
+    # Block trivia style prompts
+    if any(q.startswith(word) for word in QUESTION_WORDS):
+        # Only allow if it's also a real infra task (script/command/etc.)
+        task_terms = ["script", "command", "yaml", "playbook", "manifest", "dockerfile"]
+        if not any(t in q for t in task_terms):
+            return False
+
+    # Allow Chef/Puppet
+    if any(term in q for term in CHEF_TERMS + PUPPET_TERMS):
         return True
 
-    # ✅ Allow if contains DevOps/infra keywords
-    if any(kw in query_lower for kw in ALLOWED_KEYWORDS):
+    # Allow infra keywords
+    if any(kw in q for kw in ALLOWED_KEYWORDS):
         return True
 
-    # 🚫 DEFAULT DENY: If no infra keywords found, reject
+    # Default: reject
     return False
 
 def clean_output(raw: str) -> str:
-    """Ensure response is copy-ready command/script only."""
     raw = raw.strip()
     if not raw:
         return "No output from deepshell CLI."
 
-    # If there are code fences, extract the first fenced block
     if "```" in raw:
         parts = raw.split("```")
         if len(parts) >= 2:
             code = parts[1].strip()
             return f"```bash\n{code}\n```"
 
-    # If multi-line or short one-liner, wrap as bash
     if "\n" in raw or len(raw.split()) <= 8:
         return f"```bash\n{raw}\n```"
 
-    # Default: return as-is (plain text, no copy button)
     return raw
 
 @app.post("/run-agent")
 async def run_agent(request: AgentRequest):
-    # ✅ STRICT: Reject non-domain queries
     if not is_allowed_query(request.prompt):
         return {"output": "⚠️ Deepshell is specialized for Linux, Infra, DevOps, Cloud, and IaC tasks only. General Q&A is not supported here."}
 
