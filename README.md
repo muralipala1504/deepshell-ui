@@ -1,4 +1,5 @@
 
+---
 
 # 💻 Deepshell UI
 
@@ -13,24 +14,27 @@ _A lightweight web UI for the **Deepshell** AI Shell Assistant._
 
 ## 🚀 What is Deepshell UI?
 
-Deepshell UI provides a **clean and interactive web interface** for working with the **Deepshell backend** AI-powered shell assistant.  
-It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC Specialists** who need a fast, lightweight way to generate and test commands using LLMs.
+Deepshell‑UI is a **domain‑focused Infra & DevOps AI assistant**, built for  
+**Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC Specialists**.  
+
+Unlike generic chatbots or wrappers, **it rejects out‑of‑domain queries** (trivia, poems, recipes, etc.) and focuses only on delivering **copy‑ready Linux, Cloud, and IaC commands/scripts**.
 
 ---
 
 ## ✨ Features
 
-- Intuitive **chat-style interface**
-- Syntax-highlighted shell script output with **Copy-to-Clipboard**
-- Compact & responsive layout with scrollable responses
+- Intuitive **chat‑style interface**
+- Syntax‑highlighted outputs with **Copy‑to‑Clipboard**
+- Rejects irrelevant/non‑infra prompts → **no nonsense answers**
+- Clean & responsive layout with scrollable responses
 - Seamless integration with the **Deepshell backend API**
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, Vanilla JS, Prism.js
-- **Backend**: FastAPI, Uvicorn, Typer, OpenAI (via LiteLLM), psutil, Rich
+- **Frontend**: HTML, CSS, Vanilla JS, Prism.js  
+- **Backend**: FastAPI, Uvicorn, Typer, OpenAI (LiteLLM), psutil, Rich  
 - **Other**: YAML for config, Python 3.9+
 
 ---
@@ -38,7 +42,7 @@ It is designed for **Linux Sysadmins, DevOps Engineers, Cloud Engineers, and IaC
 ## 🖼️ Preview
 
 ![Deepshell UI Screenshot](docs/screenshot.png)  
-*Example: AI‑generated LVM shell script created via Deepshell Chat UI*
+*Example: Infra‑only assistant → rejects capital‑cities, delivers `df -h` instantly*
 
 ---
 
@@ -56,8 +60,6 @@ git clone https://github.com/muralipala1504/deepshell-ui.git
 cd deepshell-ui
 ```
 
-Install dependencies:
-
 ```bash
 
 pip install -r deepshell-backend/requirements.txt
@@ -70,9 +72,7 @@ Set your OpenAI API key:
 Linux/macOS
 
 ```bash
-
 export OPENAI_API_KEY="your_openai_api_key_here"
-
 ```
 
 Windows PowerShell
@@ -82,10 +82,10 @@ Windows PowerShell
 $env:OPENAI_API_KEY="your_openai_api_key_here"
 
 ```
-⚡ Firewall Config (Linux only)
+
+⚡ Firewall Config (Linux only):
 
 ```bash
-
 sudo firewall-cmd --add-port=8001/tcp --permanent
 sudo firewall-cmd --reload
 
@@ -102,56 +102,41 @@ python run_deepshell.py > deepshell.log 2>&1 &
 Now open in browser:
 
 ```bash
+
 http://localhost:8001
 
 ```
 
 👉 If remote, replace localhost with your server IP.
 
-
-🛑 Stopping the Server
-
-In the terminal where run_deepshell.py is running, press:
-
-Ctrl + C
+🛑 To stop server: hit Ctrl + C in terminal.
 
 
 🤝 Contributing
 
-Contributions are always welcome!
-
-    Open issues
-    Submit PRs
-
+Open issues, submit PRs — contributions welcome!
 Help shape the future of Deepshell 🚀
 
 
+🤖 AI Assistance
 
-## 🤖 AI Assistance
-
-This project was developed with assistance from AI language models (e.g.,OpenAI GPT,Gemini 2.5 Flash) for tasks such as code generation, debugging, documentation drafting, and architectural guidance.  
-All outputs have been reviewed, tested, and validated by the maintainer.
-
+This project was developed with help from AI models (OpenAI GPT, Gemini 2.5 Flash) for code, debugging, and docs.
+🛠️ All code has been reviewed, hardened, and validated by the maintainer.
 
 
 📜 License
 
-This project is licensed under the MIT License.
-See the LICENSE file for details.
+MIT Licensed. See LICENSE for details.
 
 🛣️ Roadmap
 
-Here are some planned improvements to Deepshell UI:
-
     🌙 Dark mode theme
-    💾 Persistent chat history (store + reload)
-    📂 Export responses to file (save scripts directly)
-    ⚡ Support for multiple LLM providers (OpenAI, Anthropic, Local LLMs)
-    🔄 Clear/Reset chat session button
-    🛠️ More sysadmin/devops‑friendly helpers (cloud CLI, ansible, terraform)
+    💾 Persistent chat history
+    📂 Save/export responses to file
+    ⚡ Multi‑LLM backend (OpenAI, Anthropic, Local LLMs)
+    🔄 Clear/reset chat sessions
+    🛠️ More infra helpers (Cloud CLI, Ansible, Terraform, etc.)
 
 ⭐ Star this repo if you find it useful!
 
 ---
-
-
